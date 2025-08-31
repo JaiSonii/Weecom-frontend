@@ -1,8 +1,8 @@
-import type { Product } from "@/lib/types";
+import type { Product, APIResponse, Category } from "@/lib/types";
 
 const BASE_URL = "https://dummyjson.com/products"
 
-export async function fetchProducts(limit: number, skip: number, opts?: { q?: string; category?: string; delay?: number }) : Promise<Product[]> {
+export async function fetchProducts(limit: number, skip: number, opts?: { q?: string; category?: string; delay?: number }) : Promise<APIResponse> {
   const params = new URLSearchParams()
   params.set("limit", String(limit))
   params.set("skip", String(skip))
@@ -29,7 +29,7 @@ export async function fetchProducts(limit: number, skip: number, opts?: { q?: st
 export async function fetchCategories() {
   const res = await fetch(`${BASE_URL}/categories`)
   if (!res.ok) throw new Error("Failed to fetch categories")
-  return res.json() as Promise<string[]>
+  return res.json() as Promise<Category[]>
 }
 
 export async function addProduct(product: Partial<Product>) {

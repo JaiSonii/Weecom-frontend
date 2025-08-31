@@ -42,7 +42,6 @@ export default function App() {
       const skip = (page - 1) * PAGE_SIZE
       return fetchProducts(PAGE_SIZE, skip, { q, category, delay })
     },
-    keepPreviousData: true,
   })
 
   // derived
